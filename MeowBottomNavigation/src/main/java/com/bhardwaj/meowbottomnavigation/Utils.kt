@@ -75,7 +75,7 @@ internal inline fun <T : View?> T.runAfterDelay(delay: Long, crossinline f: T.()
     this?.postDelayed({
         try {
             f()
-        } catch (e: Exception) {
+        } catch (_: Exception) {
         }
     }, delay)
 }

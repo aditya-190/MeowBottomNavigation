@@ -6,14 +6,12 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
-import android.os.Build
 import android.util.AttributeSet
 import android.util.LayoutDirection
 import android.view.Gravity
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-import com.etebarian.meowbottomnavigation.R
 import kotlin.math.abs
 
 internal typealias IBottomNavigationListener = (model: MeowBottomNavigation.Model) -> Unit
@@ -177,7 +175,7 @@ class MeowBottomNavigation : FrameLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         if (selectedId == -1) {
             bezierView.bezierX =
-                if (Build.VERSION.SDK_INT >= 17 && layoutDirection == LayoutDirection.RTL) measuredWidth + 72f.dp(
+                if (layoutDirection == LayoutDirection.RTL) measuredWidth + 72f.dp(
                     context
                 ) else (-72f).dp(context)
         }
@@ -313,7 +311,7 @@ class MeowBottomNavigation : FrameLayout {
         return null
     }
 
-    fun getCellById(id: Int): MeowBottomNavigationCell? {
+    fun getCellById(id: Int): MeowBottomNavigationCell {
         return cells[getModelPosition(id)]
     }
 

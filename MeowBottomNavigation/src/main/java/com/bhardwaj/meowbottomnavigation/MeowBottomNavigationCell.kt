@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
-import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -17,8 +16,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.widget.ImageViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-import com.etebarian.meowbottomnavigation.R
-import com.etebarian.meowbottomnavigation.databinding.MeowNavigationCellBinding
+import com.bhardwaj.meowbottomnavigation.databinding.MeowNavigationCellBinding
 
 @Suppress("unused")
 class MeowBottomNavigationCell @JvmOverloads constructor(
@@ -79,7 +77,7 @@ class MeowBottomNavigationCell @JvmOverloads constructor(
                     binding.tvCount.text = ""
                     binding.tvCount.visibility = View.INVISIBLE
                 } else {
-                    if (count != null && count?.length ?: 0 >= 3) {
+                    if (count != null && (count?.length ?: 0) >= 3) {
                         field = count?.substring(0, 1) + ".."
                     }
                     binding.tvCount.text = count
@@ -174,7 +172,7 @@ class MeowBottomNavigationCell @JvmOverloads constructor(
             val d = GradientDrawable()
             d.setColor(circleColor)
             d.shape = GradientDrawable.OVAL
-            if (Build.VERSION.SDK_INT >= 21 && !isEnabledCell) {
+            if (!isEnabledCell) {
                 binding.fl.background = RippleDrawable(ColorStateList.valueOf(rippleColor), null, d)
             } else {
                 binding.fl.runAfterDelay(200) {
